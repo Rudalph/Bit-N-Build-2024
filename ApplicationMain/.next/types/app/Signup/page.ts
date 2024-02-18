@@ -1,4 +1,4 @@
-// File: C:\Users\RUDALPH\Documents\BitnBuild24\bnb\app\Signup\page.jsx
+// File: C:\Users\RUDALPH\Documents\BitnBuild24\ApplicationMain\app\Signup\page.jsx
 import * as entry from '../../../../app/Signup/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 
