@@ -17,7 +17,7 @@ export default function Home() {
       data.set('file',file)
       console.log(typeof(data))
       console.log(data)
-      const result = await fetch('/api/textextract',{
+      const result = await fetch('/api/textextract/',{
         method: "POST",
         body: data
       })
