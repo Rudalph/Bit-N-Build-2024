@@ -4,6 +4,7 @@ import React, { useState } from "react";
 export default function Home() {
 
   const [file, setFile] = useState<File >();
+  const [text, setText] = useState('');
 
 
   const handleUploadClick = async(e: React.FormEvent<HTMLFormElement>) => {
@@ -23,6 +24,7 @@ export default function Home() {
       })
       const json = await result.json()
       console.log('result: ', json)
+      setText(json.data);
     } catch (err) {
       console.log('err:', err)
     }
@@ -45,7 +47,7 @@ export default function Home() {
         </form>
       </div>
       <div className="">
-
+        Text Extracted: {text}
       </div>
 
     </>

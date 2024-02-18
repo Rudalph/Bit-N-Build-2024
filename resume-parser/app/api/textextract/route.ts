@@ -1,8 +1,8 @@
 import { NextRequest,NextResponse } from 'next/server'
 import { PDFLoader } from 'langchain/document_loaders/fs/pdf'
 import { join } from 'path'
-import fs, { writeFile,unlink } from 'fs/promises';
-import pdfParse from 'pdf-parse';
+import { writeFile,unlink } from 'fs/promises';
+import { OpenAI } from "@langchain/openai";
 
 export async function POST(request: NextRequest) {
     const data = await request.formData()
@@ -31,8 +31,29 @@ export async function POST(request: NextRequest) {
     console.log(extractedTexts.join('\n\n'));
     // Use the unlink function to delete the file asynchronously.
     await unlink(path);
+
+    const model = new OpenAI({
+      modelName: "gpt-3.5-turbo-instruct", // Defaults to "gpt-3.5-turbo-instruct" if no model provided.
+      temperature: 0.3,
+      openAIApiKey: process.env.OPENAI_API_KEY, 
+    });
+
+    const experience = await model.call(
+      `This is a resume content:${extractedTexts}, what is mentioned as experience`
+    );
+
+    const skills = await model.call(
+      `This is a resume content:${extractedTexts}, what is mentioned as skills`
+    )
+    
+    const qualification = await model.call(
+      `This is a resume content:${extractedTexts}, what is mentioned as qualification`
+    )
+    console.log(`Experience: ${experience}`)
+    console.log(`Skills:  ${skills}`)
+    console.log(`Qualification: ${qualification}`)
   
     return NextResponse.json({
-      "data": 'successfully created index and loaded data into pinecone...'
+      "data": extractedTexts
     })
   }
