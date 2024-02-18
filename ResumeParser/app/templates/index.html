@@ -1,0 +1,227 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Analysis</title>
+    
+</head>
+<body>
+    <h1>Resume Analysis</h1>
+    
+   
+    <form method="post" enctype="multipart/form-data">
+        <label for="resumes">Upload Resumes (PDF):</label>
+        <input type="file" name="resumes" accept=".pdf" multiple required>
+        <button type="submit">Submit Resumes</button>
+    </form>
+
+    
+    {% if answer %}
+        <h2>Results:</h2>
+        <ul>
+            {% for result in answer %}
+                <li>{{ result }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <hr>
+
+    
+    <form method="post" action="/job_description">
+        <label for="job_description">Enter Job Description:</label>
+        <textarea name="job_description" rows="4" cols="50" required></textarea>
+        <button type="submit">Submit Job Description</button>
+    </form>
+
+   
+    {% if result %}
+        <h2>Result for Job Description:</h2>
+        <p>{{ result }}</p>
+    {% endif %}
+</body>
+</html> -->
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Analysis</title>
+    
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Resume Analysis</h1>
+    
+    <form method="post" enctype="multipart/form-data">
+        <label for="resumes">Upload Resumes (PDF):</label>
+        <input type="file" name="resumes" accept=".pdf" multiple required>
+        <button type="submit">Submit Resumes</button>
+    </form>
+
+    {% if answer %}
+        <h2>Results:</h2>
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Skills</th>
+                <th>Certifications</th>
+                <th>Qualifications</th>
+                <th>Experience</th>
+            </tr>
+            {% for result in answer %}
+                <tr>
+                    <td>{{ result.name }}</td>
+                    <td>{{ result.email }}</td>
+                    <td>{{ result.skills }}</td>
+                    <td>{{ result.certifications }}</td>
+                    <td>{{ result.qualifications }}</td>
+                    <td>{{ result.experience }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+
+    <hr>
+
+    <form method="post" action="/job_description">
+        <label for="job_description">Enter Job Description for Finding Best Resume:</label>
+        <textarea name="job_description" rows="4" cols="50" required></textarea>
+        <button type="submit">Submit Job Description</button>
+    </form>
+
+    {% if result %}
+        <h2>Result for Job Description:</h2>
+        <p>{{ result }}</p>
+    {% endif %}
+
+    <hr>
+
+    <form method="post" action="/job_description1">
+        <label for="job_description">Enter Job Description for Categorizing Resumes:</label>
+        <textarea name="job_description" rows="4" cols="50" required></textarea>
+        <button type="submit">Categorize Resumes</button>
+    </form>
+
+</body>
+</html>
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Analysis</title>
+   
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Resume Analysis</h1>
+    
+    <
+    <form method="post" enctype="multipart/form-data">
+        <label for="resumes">Upload Resumes (PDF):</label>
+        <input type="file" name="resumes" accept=".pdf" multiple required>
+        <button type="submit">Submit Resumes</button>
+    </form>
+
+   
+    {% if answer %}
+        <h2>Results:</h2>
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Skills</th>
+                <th>Certifications</th>
+                <th>Qualifications</th>
+                <th>Experience</th>
+                <th>Score</th>
+                <th>Rank</th>
+            </tr>
+            {% for result in answer %}
+                <tr>
+                    <td>{{ result.name }}</td>
+                    <td>{{ result.email }}</td>
+                    <td>{{ result.skills }}</td>
+                    <td>{{ result.certifications }}</td>
+                    <td>{{ result.qualifications }}</td>
+                    <td>{{ result.experience }}</td>
+                    <td>{{ result.score }}</td>
+                    <td>{{ result.rank }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+
+    <hr>
+
+    
+    <form method="post" action="/job_description">
+        <label for="job_description">Enter Job Description:</label>
+        <textarea name="job_description" rows="4" cols="50" required></textarea>
+        <button type="submit">Submit Job Description</button>
+    </form>
+
+    
+    {% if result %}
+        <h2>Result for Job Description:</h2>
+        <p>{{ result }}</p>
+    {% endif %}
+    
+    
+    <form method="post" action="/rank_candidates">
+        <label for="job_description_rank">Enter Job Description for Ranking:</label>
+        <textarea name="job_description_rank" rows="4" cols="50" required></textarea>
+        <button type="submit">Rank Candidates</button>
+    </form>
+
+    
+    {% if rankings %}
+        <h2>Candidate Rankings:</h2>
+        <ol>
+            {% for rank in rankings %}
+                <li>Candidate {{ rank.candidate }} - Score: {{ rank.score }} - Rank: {{ rank.rank }}</li>
+            {% endfor %}
+        </ol>
+    {% endif %}
+</body>
+</html> -->

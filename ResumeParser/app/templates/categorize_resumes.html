@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Analysis</title>
+    
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Resume Analysis</h1>
+    
+    {% if resume_contents %}
+        <h2>Resume Categories:</h2>
+        <table>
+            <tr>
+                <th>Resume</th>
+                <th>Category</th>
+            </tr>
+            {% for resume_content in resume_contents %}
+                <tr>
+                    <td>{{ resume_content.resume }}</td>
+                    <td>{{ resume_content.category }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p>No resumes available for categorization.</p>
+    {% endif %}
+
+</body>
+</html>
