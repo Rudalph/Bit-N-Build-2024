@@ -4,6 +4,7 @@ import React, { useState } from 'react'
 import { ArrowRight } from 'lucide-react'
 import login from '@/Api/Userlogin'
 import google from '@/Api/google'
+import Link from 'next/link'
 
 const page = () => {
 
@@ -45,7 +46,7 @@ const page = () => {
           <p className="mt-2 text-center text-sm text-gray-600 ">
             Don&apos;t have an account?{' '}
             <a
-              href="#"
+              href="Signup"
               title=""
               className="font-semibold text-black transition-all duration-200 hover:underline"
             >

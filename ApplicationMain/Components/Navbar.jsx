@@ -6,6 +6,7 @@ const Navbar = () => {
     <div>
         <Link href="Signup">Navbar for signup</Link>
         <Link href="Login">Navbar for signin</Link>
+        <Link href="Flask">Flask</Link>
     </div>
   )
 }
