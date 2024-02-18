@@ -21,10 +21,11 @@ export async function POST(request: NextRequest) {
     const buffer = Buffer.from(bytes)
   
     const path = join('documents',file.name)
+    const pathToFile = `resume-parser/documents/${file.name}`
     await writeFile(path, buffer)
 
     try{
-        const text = await fs.readFile(path);
+        const text = await fs.readFile(pathToFile);
         console.log("3")
         const parsedData = await pdfParse(text);
         console.log(parsedData)
